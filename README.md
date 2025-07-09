@@ -227,6 +227,7 @@ Berikut adalah beberapa contoh penggunaannya di dalam fungsi `haruna`:
 
 * [Clayza Aubert](https://github.com/ClayzaAubert) (Lead Developer)
 * [xct007](https://github.com/xct007) (Base Engine - SuryaRB)
+* [Dixie](https://github.com/DittKanaeru) (ikut ikutan)
 
 ---
 ## 📜 Lisensi

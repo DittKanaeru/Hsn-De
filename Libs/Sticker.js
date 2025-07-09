@@ -76,6 +76,41 @@ function getFontSize(text, width, height) {
 	return { fontSize: fontSize, width: textWidth };
 }
 
+
+export async function webpToMedia(inputBuffer, type = "image") {
+  return new Promise((resolve, reject) => {
+    const inputPath = join(tmpdir(), crypto.randomBytes(8).toString("hex") + ".webp");
+    const outputExt = type === "video" ? "mp4" : "png";
+    const outputPath = inputPath.replace(".webp", `.${outputExt}`);
+
+    writeFileSync(inputPath, inputBuffer);
+
+    ffmpeg(inputPath)
+      .outputOptions(
+        type === "video"
+          ? ["-movflags faststart", "-pix_fmt yuv420p", "-vf scale=trunc(iw/2)*2:trunc(ih/2)*2"]
+          : []
+      )
+      .toFormat(outputExt)
+      .save(outputPath)
+      .on("end", () => {
+        try {
+          const result = readFileSync(outputPath);
+          unlinkSync(inputPath);
+          unlinkSync(outputPath);
+          resolve(result);
+        } catch (e) {
+          reject(e);
+        }
+      })
+      .on("error", (err) => {
+        unlinkSync(inputPath);
+        reject(err);
+      });
+  });
+}
+
+
 /**
  * Represents a Sticker object.
  * @class

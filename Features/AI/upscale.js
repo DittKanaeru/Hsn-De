@@ -1,11 +1,11 @@
 export default {
-	command: ["hd","upscale", "upscale4x"],
+	command: ["upscale","hd","hdx"],
 	description: "Upscale 4x",
 	category: "AI",
 	owner: false,
 	admin: false,
 	hidden: false,
-	limit: false,
+	limit: false,a
 	group: false,
 	private: false,
 
@@ -27,7 +27,7 @@ export default {
             if (response.status === "Success") {
                 await sock.sendMessage(
                     m.chat,
-                    { image: { url: response.result.url }, caption: `*udah ya kakk jangan lupa follow ch mici :3*` },
+                    { image: { url: response.result.url }, caption: `*Nih KAKKKKKK*` },
                     { quoted: m }
                 );
             } else {
